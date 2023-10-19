@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    container_name: cursos-db-container  # Nombre del contenedor de la base de datos
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password  # Contraseña de root para MySQL
+      MYSQL_DATABASE: cursos  # Nombre de la base de datos
+      MYSQL_USER: abraham  # Usuario de la base de datos
+      MYSQL_PASSWORD: 12345  # Contraseña del usuario de la base de datos
+    volumes:
+      - db_data:/var/lib/mysql  # Volumen para persistencia de datos
+
+volumes:
+  db_data:  # Define el volumen para persistencia de datos
+
+
